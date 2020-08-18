@@ -1,9 +1,12 @@
 package com.android.mysql.dash;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.android.mysql.Login;
 import com.android.mysql.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -54,6 +57,43 @@ public class ProfileActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.profile, menu);
         return true;
     }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+
+            case R.id.action_settings:
+                Intent intent1 = new Intent(this,Setting.class);
+                startActivity(intent1);
+                break;
+
+            case R.id.action_logout:
+                /*SharedPrefManager.getInstance(getApplicationContext()).logout();
+                finish();*/
+                //FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(this, Login.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+
+
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
